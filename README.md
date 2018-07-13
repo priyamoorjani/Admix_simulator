@@ -75,7 +75,7 @@ This will use data in family.geno (output from simulator/realdata) and output a 
 
 Requirements: This utility only uses standard python modules. Developed in Python 3.5.2. 
 
-#### Naive PCA-based estimator for admixture proportions
+# Naive PCA-based estimator for admixture proportions
 
 This utility takes the eigenstrat output file from smartpca (https://github.com/DReichLab/EIG/tree/master/EIGENSTRAT) and performs a naive analysis to infer the admixture proportion in simulated individuals. Assuming a two-way admixture, we can perform a PCA between the admixed individuals and the two ancestral populations and then use the projection on PC 1 and 2 to infer the admixture proportion. Assume $m_1, m_2, m_3$ is the mean position on PC1 for ancestral pop1, ancestral pop2 and the admixed pop respectively. We estimate $theta$ as $abs(m_1-m_3)/abs(m_1-m_2). We recognize that this approximation does not hold under complex mixture or when true ancestrals are not available. Though this serves as a handy tool to infer admixture proportions in simulations where the truth is known. We estimate standard errors by using a simple empirical variance calculation.
 
