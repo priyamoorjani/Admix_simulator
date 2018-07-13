@@ -1,0 +1,11 @@
+genotypename: family.geno
+snpname:      family.snp
+indivname:    family.ind
+evecoutname:  family.evec
+evaloutname:  family.eval
+numoutevec:   2
+numoutliter:  0
+pubmean:      YES 
+fastmode:     YES
+numoutleigs:  0
+

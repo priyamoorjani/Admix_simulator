@@ -1,0 +1,10 @@
+geno1: simulation.geno
+snp1:  simulation.snp
+ind1:  simulation.ind 
+geno2: data/French_Yoruba.geno
+snp2:  data/French_Yoruba.snp
+ind2:  data/French_Yoruba.ind 
+indoutfilename: family.ind
+snpoutfilename: family.snp
+genooutfilename: family.geno
+outputformat:	EIGENSTRAT

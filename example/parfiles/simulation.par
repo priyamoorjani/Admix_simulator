@@ -1,0 +1,12 @@
+ancestorAgeno:       data/CEU.phgeno
+ancestorAind:        data/CEU.phind
+ancestorAsnp:        data/CEU.phsnp
+ancestorBgeno:       data/YRI.phgeno
+ancestorBind:        data/YRI.phind
+ancestorBsnp:        data/YRI.phsnp
+lambda:              100
+theta:               0.2
+n:                   100
+trackancestry:       True
+outputfilename:      simulation
+haploidoutput:       False
