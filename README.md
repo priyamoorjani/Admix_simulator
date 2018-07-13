@@ -114,4 +114,4 @@ Requirements:
 The package requires Python 3.5.2 and standard packages. For plotting, matplotlib is also required. 
 
 # Support:
-Send queries to Neel Alex (salexucb@berkeley.edu) and Priya Moorjani (moorjani@berkeley.edu)```
+Send queries to Neel Alex (salexucb@berkeley.edu) and Priya Moorjani (moorjani@berkeley.edu)
