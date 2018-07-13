@@ -2,7 +2,7 @@
 
 This simulator can be used for generating admixed genomes. As input the method takes phased data from two populations and generates admixed individuals for a given time of admixture and proportion of ancestry from each population. Method assumes instantaneous admixture but to generate data for multiple pulses or continuous admixture, one can run the same code in a loop. Details of the method can be found in Moorjani et al. 2011.  
 
-Command line: 
+### Command line: 
 ```
 ./simulation.py -p <parfilename> 
 ```
@@ -10,7 +10,7 @@ Input:
 This program requires two sets of phased individuals in the EIGENSTRAT format (See https://reich.hms.harvard.edu/software/InputFileFormats). The input phased geno, snp, and ind files must be consistent (same number of SNPs in both files, consistent number of individuals and number of columns in the geno files, etc). The .geno file must be in the input format EIGENSTRAT (https://reich.hms.harvard.edu/software/InputFileFormats). Note that the simulator is only built for phased data in eigenstrat format.
  
 The program also requires a parameter file. See format below.
-Parameter file arguments:
+### Parameter file arguments:
 ```
 ancestorAgeno:  .phgeno file for the first ancestral population
 ancestorAsnp:   .phsnp file for the first ancestral population
@@ -26,14 +26,14 @@ haploidoutput:  If 'False', output normal diploid genotypes, otherwise output ph
 trackancestry:  If 'False', do not track ancestry and output information to <output>.ancestry. Each line of the output file will have the ancestry at a SNP - individuals separated by hyphens ('-').
 ```
 
-Output:
+### Output:
 The simulator outputs to <output>.geno, <output>.ind, <output>.snp under normal conditions, and to <output>.phgeno, <output>.phind, <output>.phsnp when haploidoutput is set to True. Additionally, the utility will write to <output>.ancestry if trackancestry is set to True. The output files will be in EIGENSTRAT format. 
 The simulated individuals are labeled: NA<number>, and have gender Unknown. The population name of the outputted individuals is always "Simulation". 
 
-Requirements:
+### Requirements:
 The number of strands that the simulator creates must be lower than the number of individuals in the smaller of the two parental pools, as we require that at any point in the set of simulated individuals, no two draw from the same haplotype (to reduce inbreeding-like effects). Thus, at some point, it's possible that every strand being simulated draws from one pool, so if there are more strands than individuals in a pool, the simulator cannot continue. Note also that we guarantee that every crossover event includes a derangement - individuals cannot draw from one parent, crossover, and end up drawing from the same individual that they were copying from originally. At the ends of chromosomes, we redraw ancestry completely from random, essentially a crossover event that does not guarantee derangement.
 
-Example:
+### Example:
 Look in the directory example/ for full details. The command will be:
 ```
 ./simulation.py -p parfiles/simulation.par
