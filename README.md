@@ -10,7 +10,7 @@ Input:
 This program requires two sets of phased individuals in the EIGENSTRAT format (See https://reich.hms.harvard.edu/software/InputFileFormats). The input phased geno, snp, and ind files must be consistent (same number of SNPs in both files, consistent number of individuals and number of columns in the geno files, etc). The .geno file must be in the input format EIGENSTRAT (https://reich.hms.harvard.edu/software/InputFileFormats). Note that the simulator is only built for phased data in eigenstrat format.
  
 The program also requires a parameter file. See format below.
-### Parameter file arguments:
+#### Parameter file arguments:
 ```
 ancestorAgeno:  .phgeno file for the first ancestral population
 ancestorAsnp:   .phsnp file for the first ancestral population
@@ -26,14 +26,14 @@ haploidoutput:  If 'False', output normal diploid genotypes, otherwise output ph
 trackancestry:  If 'False', do not track ancestry and output information to <output>.ancestry. Each line of the output file will have the ancestry at a SNP - individuals separated by hyphens ('-').
 ```
 
-### Output:
+#### Output:
 The simulator outputs to <output>.geno, <output>.ind, <output>.snp under normal conditions, and to <output>.phgeno, <output>.phind, <output>.phsnp when haploidoutput is set to True. Additionally, the utility will write to <output>.ancestry if trackancestry is set to True. The output files will be in EIGENSTRAT format. 
 The simulated individuals are labeled: NA<number>, and have gender Unknown. The population name of the outputted individuals is always "Simulation". 
 
-### Requirements:
+#### Requirements:
 The number of strands that the simulator creates must be lower than the number of individuals in the smaller of the two parental pools, as we require that at any point in the set of simulated individuals, no two draw from the same haplotype (to reduce inbreeding-like effects). Thus, at some point, it's possible that every strand being simulated draws from one pool, so if there are more strands than individuals in a pool, the simulator cannot continue. Note also that we guarantee that every crossover event includes a derangement - individuals cannot draw from one parent, crossover, and end up drawing from the same individual that they were copying from originally. At the ends of chromosomes, we redraw ancestry completely from random, essentially a crossover event that does not guarantee derangement.
 
-### Example:
+#### Example:
 Look in the directory example/ for full details. The command will be:
 ```
 ./simulation.py -p parfiles/simulation.par
@@ -43,29 +43,29 @@ Look in the directory example/ for full details. The command will be:
 
 This utility allows one to quickly set a number of SNPs from a .geno file as missing data (useful to testing the impact of missing data on the inference). The utility does this simply by checking the genotype at every SNP for each individual, and choosing to replace the position with 9 with given probability based on the input. The analysis can be performed in two modes: 1) Diploid mode (where output is diploid for non-missing data); 2) Pseudo-haploid mode (where we aim to mimic ancient DNA by further randomly sampling an allele (thus creating a homozygous call) at every heterozygous site. This has the effect of create pseudo haploid genotypes.
 
-Command line: 
+#### Command line: 
 ```
 ./missingdata.py -r <threshold> -f <input> -o <output> -a -s <seed>
 ```
 Input: Inputs must be in EIGENSTRAT format, PACKEDANCESTRYMAP is not currently supported (See https://reich.hms.harvard.edu/software/InputFileFormats).
 
-Arguments (REQUIRED):
+#### Arguments (REQUIRED):
 ```
     -r <float> : Designates the ratio of data to remove. With probability r, each character in the .geno file will be converted to a '9'
     -f <filename> : Name of the geno file to read and convert.
     -o <outfilename> XOR -i : The name outfilename designates the file to which to write the new output. -i indicates that the modification is meant to be done in-place - identical to having the output filename be the same as the input file name. You may only use one of these two options. 
 ```
 
-Arguments (OPTIONAL):
+#### Arguments (OPTIONAL):
 ```
     -s <seed> : Random seed for generation.
     -a : Indicates ancient data conversion. For characters that aren't chosen to be removed by the main part of the utility, if the character is a '1', indicating a heterozygous site, the utility will replace the character with either a '0' or a '2', with even probability of the outcomes.
 ```
 
-Output:
+#### Output:
 The output file as indicated by the arguments will contain the characters from the input file, with each character being replaced with a '9' with probability r, and with '1's being replaced by a '0' or '2' with probability 0.5 each. 
 
-Example:
+#### Example:
 In the directory example/, run:
 ```
 ./missingdata.py -r 0.2 -f family.geno -o family_missingdata.geno -a -s 42
@@ -75,28 +75,28 @@ This will use data in family.geno (output from simulator/realdata) and output a 
 
 Requirements: This utility only uses standard python modules. Developed in Python 3.5.2. 
 
-# Naive PCA-based estimator for admixture proportions
+#### Naive PCA-based estimator for admixture proportions
 
 This utility takes the eigenstrat output file from smartpca (https://github.com/DReichLab/EIG/tree/master/EIGENSTRAT) and performs a naive analysis to infer the admixture proportion in simulated individuals. Assuming a two-way admixture, we can perform a PCA between the admixed individuals and the two ancestral populations and then use the projection on PC 1 and 2 to infer the admixture proportion. Assume $m_1, m_2, m_3$ is the mean position on PC1 for ancestral pop1, ancestral pop2 and the admixed pop respectively. We estimate $theta$ as $abs(m_1-m_3)/abs(m_1-m_2). We recognize that this approximation does not hold under complex mixture or when true ancestrals are not available. Though this serves as a handy tool to infer admixture proportions in simulations where the truth is known. We estimate standard errors by using a simple empirical variance calculation.
 
-Command line: 
+#### Command line: 
 ```
 ./pc_analysis.py -f <input evec file> -p <population list>
 ```
 
-Input:
+#### Input:
 The input must be the output style of smartpca (*.evec). The first column will be the individual IDs, the second will be the projection of the individual onto the first PC, the third will be the projection of the individual onto the second PC, and the final will be the population title. The first line will contain the eigenvalues (for display purposes only).
 
-Arguments:
+#### Arguments:
 ```
     -f <filename> : This designates the input file to the program, which is itself the output from a smartpca run on the individuals. 
     -p <poplist> : This indicates the populations to read out. The format for this input is "<Admixed population>;<Reference population 1>,<Reference population 2>". 
 ```
 
-Output:
+#### Output:
 This utility will output to the standard output - with information on the population means and standard errors on the first two principal components, as well as the estimation of admixture ratio based on positions in the first two principal components. 
 
-Example:
+#### Example:
 ```
 ./pc_analysis.py -f "family.evec" -p "Simulation;French,Yoruba"
 ```
@@ -106,11 +106,11 @@ If you want to store the outputs:
 ./pc_analysis.py -f "family.evec" -p "Simulation;French,Yoruba" > pc_analysis.log
 ```
 
-Experimental:
+#### Experimental:
 ```
     -o <outfilename> : This will make the program try to use matplotlib to plot the individuals on the first two PCs. This is currently experimental, as whether or not this will work depends on the backend that your system's matplotlib uses.
 ```
-Requirements:
+#### Requirements:
 The package requires Python 3.5.2 and standard packages. For plotting, matplotlib is also required. 
 
 # Support:
