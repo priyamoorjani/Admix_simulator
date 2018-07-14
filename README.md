@@ -41,13 +41,14 @@ Look in the directory example/ for full details. The command will be:
 
 # Simulating missing data
 
-This utility allows one to quickly set a number of SNPs from a .geno file as missing data (useful to testing the impact of missing data on the inference). The utility does this simply by checking the genotype at every SNP for each individual, and choosing to replace the position with 9 with given probability based on the input. The analysis can be performed in two modes: 1) Diploid mode (where output is diploid for non-missing data); 2) Pseudo-haploid mode (where we aim to mimic ancient DNA by further randomly sampling an allele (thus creating a homozygous call) at every heterozygous site. This has the effect of create pseudo haploid genotypes.
+This utility allows one to set a number of genotypes (based on the user defined proportion) as missing data. This is useful for testing the impact of missing data on the inference (particularly helpful in ancient DNA studies). This is implemented by checking the genotype at every SNP for each individual, and choosing to replace the position with 9 with given probability based on the input missing fraction (-r). The analysis can be performed in two modes: 1) Diploid mode: output is left as diploid for non-missing data; 2) Pseudo-haploid mode: output is haploid or missing. This aims to mimic ancient DNA where its hard to call heterozygous sites with limited coverage. Hence typically one randomly samples a read mapping to that site and uses a pseudo-haploid call for the inference. Similarly, in our simulation we randomly sample one allele at each heterozygous site.
 
 #### Command line: 
 ```
 ./missingdata.py -r <threshold> -f <input> -o <output> -a -s <seed>
 ```
-Input: Inputs must be in EIGENSTRAT format, PACKEDANCESTRYMAP is not currently supported (See https://reich.hms.harvard.edu/software/InputFileFormats).
+#### Input: 
+Inputs must be in EIGENSTRAT format, PACKEDANCESTRYMAP is not currently supported (See https://reich.hms.harvard.edu/software/InputFileFormats).
 
 #### Arguments (REQUIRED):
 ```
@@ -73,7 +74,7 @@ In the directory example/, run:
 
 This will use data in family.geno (output from simulator/realdata) and output a new pseudo-haploid geno file with missing-data set based on the proportion -r. 
 
-Requirements: This utility only uses standard python modules. Developed in Python 3.5.2. 
+#### Requirements: This utility only uses standard python modules. Developed in Python 3.5.2. 
 
 # Naive PCA-based estimator for admixture proportions
 
