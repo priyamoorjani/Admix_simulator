@@ -1,6 +1,6 @@
 # Admixture simulator
 
-This simulator can be used for generating admixed genomes. As input the method takes phased data from two populations and generates admixed individuals for a given time of admixture and proportion of ancestry from each population. Method assumes instantaneous admixture but to generate data for multiple pulses or continuous admixture, one can run the same code in a loop. Details of the method can be found in Moorjani et al. 2011.  
+This simulator can be used for generating admixed genomes. As input the method takes phased data from two populations and generates admixed individuals for a given time of admixture and proportion of ancestry from each population. Method assumes instantaneous admixture but to generate data for multiple pulses or continuous admixture, one can run the same code in a loop. Details of the method can be found in  <a href="https://priyamoorjani.files.wordpress.com/2018/06/2011_moorjani_african-gene-flow-in-levant_plosgenetics.pdf">Moorjani et al. 2011</a>.  
 
 #### Command line: 
 ```
