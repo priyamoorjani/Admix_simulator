@@ -6,8 +6,8 @@ This simulator can be used for generating admixed genomes. As input the method t
 ```
 ./simulation.py -p <parfilename> 
 ```
-Input:
-This program requires two sets of phased individuals in the EIGENSTRAT format (See https://reich.hms.harvard.edu/software/InputFileFormats). The input phased geno, snp, and ind files must be consistent (same number of SNPs in both files, consistent number of individuals and number of columns in the geno files, etc). The .geno file must be in the input format EIGENSTRAT (https://reich.hms.harvard.edu/software/InputFileFormats). Note that the simulator is only built for phased data in eigenstrat format.
+#### Input:
+This program requires two sets of phased individuals in the EIGENSTRAT format (See https://reich.hms.harvard.edu/software/InputFileFormats). The input phased geno, snp, and ind files must be consistent (same number of SNPs in .snp and .geno file, and there should be two rows for each individual which is correctly indentified in the ind file). For an example, see example/data/CEU.ph*
  
 The program also requires a parameter file. See format below.
 #### Parameter file arguments:
