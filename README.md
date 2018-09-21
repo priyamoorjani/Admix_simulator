@@ -12,18 +12,18 @@ This program requires two sets of phased individuals in the EIGENSTRAT format (S
 The program also requires a parameter file. See format below.
 #### Parameter file arguments:
 ```
-ancestorAgeno:  .phgeno file for the first ancestral population
-ancestorAsnp:   .phsnp file for the first ancestral population
-ancestorAind:   .phind file for the first ancestral population
-ancestorBgeno:  .phgeno file for the second ancestral population
-ancestorBsnp:   .phsnp file for the second ancestral population
-ancestorBind:   .phind file for the second ancestral population
-outputfilename: The filename that outputs will be written to. 
-lambda:     	The age of the admixture. Any number greater than 0.
-theta:      	The admixture ratio - theta should be a float between 0 and 1, and indicates the proportion of ancestorA in the produced individuals.
-n:      	The number of strands to output. Thus, if the output is haploid, the simulator will create n strands, otherwise the simulator will create 2n strands and merge them.
-haploidoutput:  If 'False', output normal diploid genotypes, otherwise output phased individuals.
-trackancestry:  If 'False', do not track ancestry and output information to <output>.ancestry. Each line of the output file will have the ancestry at a SNP - individuals separated by hyphens ('-').
+ancestorAgeno:  input1.phgeno #file for the first ancestral population
+ancestorAsnp:   input1.phsnp  #file for the first ancestral population
+ancestorAind:   input1.phind  #file for the first ancestral population
+ancestorBgeno:  input2.phgeno #file for the second ancestral population
+ancestorBsnp:   input2.phsnp  #file for the second ancestral population
+ancestorBind:   input2.phind  #file for the second ancestral population
+outputfilename:   output      #The filename that outputs will be written to. 
+lambda:     	  10             #The time of admixture in generations. Any number greater than 0.
+theta:      0.2	              #The admixture ratio - theta should be a float between 0 and 1, and indicates the proportion of ancestorA in the produced individuals.
+n:      	  100                #The number of individuals. Thus, if the output is haploid, the simulator will create n haploid individuals, otherwise the simulator will create n diploid individuals.
+haploidoutput:  False         #If 'False', output diploid genotypes, otherwise output phased individuals.
+trackancestry:  False         #If 'False', do not track ancestry, otherwise output information to <output>.ancestry. Each line of the output file will have the ancestry at a SNP - individuals separated by hyphens ('-').
 ```
 
 #### Output:
