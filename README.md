@@ -44,7 +44,8 @@ Look in the directory `example/` for full details. The command will be:
 # Simulating missing data
 
 This utility allows one to set a number of genotypes (based on the user defined proportion) as missing data. This is useful for testing the impact of missing data on the inference (particularly helpful in ancient DNA studies). This is implemented by checking the genotype at every SNP for each individual, and choosing to replace the position with 9 with given probability based on the input missing fraction (-r). The analysis can be performed in two modes: 
-1) `Diploid mode:` output is left as diploid for non-missing data; 2) Pseudo-haploid mode: output is haploid or missing. This aims to mimic ancient DNA where its hard to call heterozygous sites with limited coverage. Hence typically one randomly samples a read mapping to that site and uses a pseudo-haploid call for the inference. Similarly, in our simulation we randomly sample one allele at each heterozygous site.
+1) `Diploid mode:` output is left as diploid for non-missing data; 
+2) `Pseudo-haploid mode:` output is haploid or missing. This aims to mimic ancient DNA where its hard to call heterozygous sites with limited coverage. Hence typically one randomly samples a read mapping to that site and uses a pseudo-haploid call for the inference. Similarly, in our simulation we randomly sample one allele at each heterozygous site.
 
 #### Command line: 
 ```
