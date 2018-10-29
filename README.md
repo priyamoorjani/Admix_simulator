@@ -33,7 +33,7 @@ The simulated individuals are labeled:
  NA<number>, and have gender as U (unknown), and the population name of the outputted individuals is set as "Simulation". This nomenclature can easily be changed by updating the *.ind file. 
 
 #### Requirements:
-The number of strands that the simulator creates must be lower than the number of individuals in the smaller of the two parental pools, as we require that at any point in the set of simulated individuals, no two draw from the same haplotype (to reduce inbreeding-like effects). Thus, at some point, it's possible that every strand being simulated draws from one pool, so if there are more strands than individuals in a pool, the simulator cannot continue. Note also that we guarantee that every crossover event includes a derangement - individuals cannot draw from one parent, crossover, and end up drawing from the same individual that they were copying from originally. At the ends of chromosomes, we redraw ancestry completely from random, essentially a crossover event that does not guarantee derangement.
+The number of simulated individuals will be lower than the number of individuals in the smaller of the two parental pools, as we sample ancestral haplotypes without replacement.Note also that we guarantee that every crossover event includes a derangement - two individuals cannot copy the sample haplotye. 
 
 #### Example:
 Look in the directory example/ for full details. The command will be:
