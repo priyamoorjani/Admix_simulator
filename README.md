@@ -7,7 +7,7 @@ This simulator can be used for generating admixed genomes. As input the method t
 ./simulation.py -p <parfilename> 
 ```
 #### Input:
-This program requires two sets of phased individuals in the EIGENSTRAT format (See https://reich.hms.harvard.edu/software/InputFileFormats). The input phased geno, snp, and ind files must be consistent (same number of SNPs in .snp and .geno file, and there should be two rows for each individual which is correctly indentified in the ind file). For an example, see example/data/CEU.ph*
+This program requires two sets of phased individuals in the EIGENSTRAT format (See https://reich.hms.harvard.edu/software/InputFileFormats). The input phased geno, snp, and ind files must be consistent (same number of SNPs in .snp and .geno file, and there should be two rows for each individual which is correctly indentified in the ind file). For an example, see `example/data/CEU.ph*`.
  
 The program also requires a parameter file. See format below.
 #### Parameter file arguments:
@@ -27,23 +27,24 @@ trackancestry:  False         #If 'False', do not track ancestry, otherwise outp
 ```
 
 #### Output:
-The simulator outputs to <output>.geno, <output>.ind, <output>.snp under normal conditions, and to <output>.phgeno, <output>.phind, <output>.phsnp when haploidoutput is set to True. Additionally, the utility will write to <output>.ancestry if trackancestry is set to True. The output files will be in EIGENSTRAT format. 
+By default, the simulator outputs diploid data (`<output>.geno, <output>.ind, <output>.snp`), but for phased admixed chromosomes (`<output>.phgeno, <output>.phind, <output>.phsnp`), use `haploidoutput:True`. Additionally, you can output the true ancestry at each position (`<output>.ancestry`) using `trackancestry:True`. The output files will be in EIGENSTRAT format. 
  
 The simulated individuals are labeled: 
- NA<number>, and have gender as U (unknown), and the population name of the outputted individuals is set as "Simulation". This nomenclature can easily be changed by updating the *.ind file. 
+ `NA<number>`, and have gender as `U (unknown)`, and the population name of the outputted individuals is set as "Simulation". This nomenclature can easily be changed by updating the `*.ind` file. 
 
 #### Requirements:
-The number of simulated individuals will be lower than the number of individuals in the smaller of the two parental pools, as we sample ancestral haplotypes without replacement.Note also that we guarantee that every crossover event includes a derangement - two individuals cannot copy the sample haplotye. 
+The number of simulated individuals will be lower than the number of individuals in the smaller of the two parental pools, as we sample ancestral haplotypes without replacement. Note also that we guarantee that every crossover event includes a derangement - two individuals cannot copy from the sample haplotye. 
 
 #### Example:
-Look in the directory example/ for full details. The command will be:
+Look in the directory `example/` for full details. The command will be:
 ```
 ./simulation.py -p parfiles/simulation.par
 ```
 
 # Simulating missing data
 
-This utility allows one to set a number of genotypes (based on the user defined proportion) as missing data. This is useful for testing the impact of missing data on the inference (particularly helpful in ancient DNA studies). This is implemented by checking the genotype at every SNP for each individual, and choosing to replace the position with 9 with given probability based on the input missing fraction (-r). The analysis can be performed in two modes: 1) Diploid mode: output is left as diploid for non-missing data; 2) Pseudo-haploid mode: output is haploid or missing. This aims to mimic ancient DNA where its hard to call heterozygous sites with limited coverage. Hence typically one randomly samples a read mapping to that site and uses a pseudo-haploid call for the inference. Similarly, in our simulation we randomly sample one allele at each heterozygous site.
+This utility allows one to set a number of genotypes (based on the user defined proportion) as missing data. This is useful for testing the impact of missing data on the inference (particularly helpful in ancient DNA studies). This is implemented by checking the genotype at every SNP for each individual, and choosing to replace the position with 9 with given probability based on the input missing fraction (-r). The analysis can be performed in two modes: 
+1) `Diploid mode:` output is left as diploid for non-missing data; 2) Pseudo-haploid mode: output is haploid or missing. This aims to mimic ancient DNA where its hard to call heterozygous sites with limited coverage. Hence typically one randomly samples a read mapping to that site and uses a pseudo-haploid call for the inference. Similarly, in our simulation we randomly sample one allele at each heterozygous site.
 
 #### Command line: 
 ```
