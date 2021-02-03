@@ -102,13 +102,13 @@ def run_simulation(params):
 
     output = params["outputfilename"]
     suffix = ".phgeno" if haploid else ".geno"
-    print("Dumping results to " + output + suffix)
+    print("Printing results to " + output + suffix)
     with open(output + suffix, 'w') as f:
         for entry in data:
             f.write(entry + "\n")
 
     suffix = ".phind" if haploid else ".ind"
-    print("Dumping results to " + output + suffix)
+    print("Printing results to " + output + suffix)
     with open(output + suffix, 'w') as f:
         indices = ["{0:05}".format(i) for i in range(params['n'])]
         i = 0
@@ -124,11 +124,11 @@ def run_simulation(params):
             i += 1
 
     suffix = ".phsnp" if haploid else ".snp"
-    print("Dumping results to " + output + suffix)
+    print("Printing results to " + output + suffix)
     copyfile(params['ancestorAsnp'], output + suffix)
 
     if params["trackancestry"]:
-        print("Dumping results to " + output + ".ancestry")
+        print("Printing results to " + output + ".ancestry")
         with open(output + ".ancestry", 'w') as f:
             for entry in ancestors:
                 f.write(entry + "\n")
